@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -13,13 +11,13 @@ class DataBaseHelpper {
 
   Database? db;
 
-  String dBName = "myDB.db";
-  String tableName = "Employee";
-  String colId = "id";
-  String colName = "name";
-  String colSalary = "salary";
-  String colImage = "image";
-  String colAge = "age";
+  String dBName = "myDataBase.db";
+  String tableName = "Employees";
+  String colId = "ID";
+  String colName = "Name";
+  String colSalary = "Salary";
+  String colImage = "Image";
+  String colAge = "Age";
 
   Future<Database?> initDB() async {
     String dBPath = await getDatabasesPath();
@@ -27,10 +25,10 @@ class DataBaseHelpper {
 
     db = await openDatabase(
       path,
-      version: 1,
+      version: 5,
       onCreate: (Database db, int version) async {
         await db.execute(
-            'CREATE TABLE IF NOT EXISTS $tableName ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT, $colSalary INTEGER,$colAge INTEGER, $colImage BLOB)');
+            'CREATE TABLE IF NOT EXISTS $tableName ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT, $colSalary INTEGER, $colAge INTEGER, $colImage BLOB);');
       },
     );
 
@@ -46,7 +44,7 @@ class DataBaseHelpper {
     db = await initDB();
 
     log("data insert");
-    String query = "INSERT INTO $tableName($colName,$colSalary,$colAge,$colImage) VALUES (?,?,?,?);";
+    String query = "INSERT INTO $tableName ($colName,$colSalary,$colAge,$colImage) VALUES (?,?,?,?);";
     List args = [name, salary, age, image];
     log("data insert Successfully");
     return await db!.rawInsert(query, args);
@@ -58,7 +56,8 @@ class DataBaseHelpper {
     String query = "SELECT * FROM $tableName;";
 
     List<Map<String, dynamic>> res = await db!.rawQuery(query);
-    if (res.isEmpty) {
+
+    if (res.isNotEmpty) {
       List<Employee>? allEmployee = res.map((e) => Employee.fromMap(e)).toList();
 
       log(allEmployee.toString());
@@ -73,6 +72,7 @@ class DataBaseHelpper {
     String query = "SELECT * FROM $tableName WHERE id = $id;";
 
     List<Map<String, dynamic>> res = await db!.rawQuery(query);
+    return res;
   }
 
   updateData({
@@ -107,5 +107,6 @@ class DataBaseHelpper {
     db = await initDB();
 
     db!.rawDelete("DELETE FROM $tableName;");
+    // db!.rawDelete("DELETE FROM $dBName;");
   }
 }

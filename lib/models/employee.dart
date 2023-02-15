@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 
 class Employee {
   int id;
@@ -18,11 +17,11 @@ class Employee {
 
   factory Employee.fromMap(Map data) {
     return Employee(
-      id: data['id'],
-      name: data['name'],
-      salary: data['salary'],
-      age: data['age'],
-      image: data['image'],
+      id: data['ID'],
+      name: data['Name'],
+      salary: data['Salary'],
+      age: data['Age'],
+      image: data['Image'],
     );
   }
 }
