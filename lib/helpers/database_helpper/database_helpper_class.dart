@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'dart:io';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -56,7 +58,7 @@ class DataBaseHelpper {
     String query = "SELECT * FROM $tableName;";
 
     List<Map<String, dynamic>> res = await db!.rawQuery(query);
-    if (res.length == 0) {
+    if (res.isEmpty) {
       List<Employee>? allEmployee = res.map((e) => Employee.fromMap(e)).toList();
 
       log(allEmployee.toString());

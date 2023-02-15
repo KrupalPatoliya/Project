@@ -16,7 +16,6 @@ class SqliteDBPage extends StatefulWidget {
 class _SqliteDBPageState extends State<SqliteDBPage> {
   @override
   void initState() {
-    // ignore: todo
     // TODO: implement initState
     super.initState();
     DataBaseHelpper.dataBaseHelpper.initDB();
@@ -136,9 +135,12 @@ class _SqliteDBPageState extends State<SqliteDBPage> {
                           }),
                     );
             } else if (snapshot.hasError) {
-              return Container(
-                alignment: Alignment.center,
-                child: Text(snapshot.error.toString(), style: const TextStyle(color: Colors.white)),
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(snapshot.error.toString(), style: const TextStyle(color: Colors.white)),
+                ),
               );
             }
             return const Center(
