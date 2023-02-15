@@ -1,0 +1,10 @@
+{
+  "helloWorld": "Hola Mundo!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "title" : "Localización",
+   "@title": {
+      "description": "The conventional"
+    }
+}

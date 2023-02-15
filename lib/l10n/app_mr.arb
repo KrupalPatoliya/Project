@@ -1,0 +1,10 @@
+{
+  "helloWorld": "नमस्कार",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "title" : "स्थानिकीकरण",
+   "@title": {
+      "description": "The conventional"
+    }
+}

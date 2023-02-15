@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1077706229893",
+    "project_id": "trainy-task-app",
+    "storage_bucket": "trainy-task-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077706229893:android:f4a04ec199e3cb5b0301ec",
+        "android_client_info": {
+          "package_name": "com.training_app.training_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077706229893-e3e132imv6jd2cnr6rkuqreq6t38i4mf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.training_app.training_app",
+            "certificate_hash": "c694b29e45a2cd5b7e3edf267101963c46671d7d"
+          }
+        },
+        {
+          "client_id": "1077706229893-9ur3n1eqt1hmjguisg49o1eomj0ktbo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeYPgkvWXfWLFE2sq8n9-W9f-aZTdEPZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077706229893-9ur3n1eqt1hmjguisg49o1eomj0ktbo9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
