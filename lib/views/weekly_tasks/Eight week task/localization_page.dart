@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:training_app/provider/language_provider.dart';
 
 class LocalizationPage extends StatefulWidget {
@@ -12,10 +12,27 @@ class LocalizationPage extends StatefulWidget {
 }
 
 class _LocalizationPageState extends State<LocalizationPage> {
+  SharedPreferences? prefs;
+  late String lng1;
+
+  setLanguage({required String lng}) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs!.setString('lng', lng);
+    print(prefs!.getString('lng'));
+    lng1 = prefs!.getString('lng')!;
+  }
+
+  getLanguage() async {
+    prefs = await SharedPreferences.getInstance();
+    print(prefs!.getString('lng'));
+    lng1 = prefs!.getString('lng')!;
+    Provider.of<LanguageProvider>(context,listen: false).changeLanguage(code: lng1);
+  }
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "en");
+      getLanguage();
       setState(() {});
     });
     // TODO: implement initState
@@ -55,6 +72,8 @@ class _LocalizationPageState extends State<LocalizationPage> {
                 GestureDetector(
                   onTap: () {
                     Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "es");
+                    prefs!.remove('lng');
+                    setLanguage(lng: "es");
                   },
                   child: Container(
                     height: 80,
@@ -94,6 +113,8 @@ class _LocalizationPageState extends State<LocalizationPage> {
                 GestureDetector(
                   onTap: () {
                     Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "gu");
+                    prefs!.remove('lng');
+                    setLanguage(lng: "gu");
                   },
                   child: Container(
                     height: 80,
@@ -133,6 +154,8 @@ class _LocalizationPageState extends State<LocalizationPage> {
                 GestureDetector(
                   onTap: () {
                     Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "hi");
+                    prefs!.remove('lng');
+                    setLanguage(lng: "hi");
                   },
                   child: Container(
                     height: 80,
@@ -176,8 +199,12 @@ class _LocalizationPageState extends State<LocalizationPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
+
                   onTap: () {
+
                     Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "en");
+                    prefs!.remove('lng');
+                    setLanguage(lng: "en");
                   },
                   child: Container(
                     height: 80,
@@ -217,6 +244,8 @@ class _LocalizationPageState extends State<LocalizationPage> {
                 GestureDetector(
                   onTap: () {
                     Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "mr");
+                    prefs!.remove('lng');
+                    setLanguage(lng: "mr");
                   },
                   child: Container(
                     height: 80,
@@ -256,6 +285,8 @@ class _LocalizationPageState extends State<LocalizationPage> {
                 GestureDetector(
                   onTap: () {
                     Provider.of<LanguageProvider>(context, listen: false).changeLanguage(code: "ru");
+                    prefs!.remove('lng');
+                    setLanguage(lng: "ru");
                   },
                   child: Container(
                     height: 80,
